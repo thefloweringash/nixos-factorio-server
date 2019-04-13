@@ -1,0 +1,94 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  NetworkStackName:
+    Type: String
+  UserData:
+    Type: String
+
+Mappings:
+  NixOSAMI:
+    # nix-instantiate --json --strict --eval --expr '(import <nixpkgs/nixos/modules/virtualisation/ec2-amis.nix>).latest' |  ruby -r yaml -r json -e 'puts JSON.load(STDIN).to_yaml'
+    ap-northeast-1:
+      hvmebs: ami-0cdba8e998f076547
+    ap-northeast-2:
+      hvmebs: ami-0400a698e6a9f4a15
+    ap-south-1:
+      hvmebs: ami-0880a678d3f555313
+    ap-southeast-1:
+      hvmebs: ami-0892c7e24ebf2194f
+    ap-southeast-2:
+      hvmebs: ami-010730f36424b0a2c
+    ca-central-1:
+      hvmebs: ami-04f66113f76198f6c
+    eu-central-1:
+      hvmebs: ami-07c9b884e679df4f8
+    eu-west-1:
+      hvmebs: ami-0f412186fb8a0ec97
+    eu-west-2:
+      hvmebs: ami-0dada3805ce43c55e
+    eu-west-3:
+      hvmebs: ami-074df85565f2e02e2
+    sa-east-1:
+      hvmebs: ami-0e4a8a47fd6db6112
+    us-east-1:
+      hvmebs: ami-009c9c3f1af480ff3
+    us-east-2:
+      hvmebs: ami-08199961085ea8bc6
+    us-west-1:
+      hvmebs: ami-07aa7f56d612ddd38
+    us-west-2:
+      hvmebs: ami-01c84b7c368ac24d1
+
+
+Resources:
+  factorioSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Let me ssh"
+      VpcId:
+        Fn::ImportValue: !Sub "${NetworkStackName}-VpcId"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          FromPort: 8
+          ToPort: -1
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: udp
+          FromPort: 34197
+          ToPort: 34198
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIpv6: ::/0
+        - IpProtocol: "58" # icmp6
+          FromPort: 128
+          ToPort: -1
+          CidrIpv6: ::/0
+        - IpProtocol: udp
+          FromPort: 34197
+          ToPort: 34198
+          CidrIpv6: ::/0
+
+  factorioHost:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.medium
+      ImageId: !FindInMap ["NixOSAMI", !Ref "AWS::Region", "hvmebs"]
+      UserData: !Ref UserData
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 20
+      NetworkInterfaces:
+        - DeviceIndex: "0"
+          SubnetId:
+            Fn::ImportValue: !Sub "${NetworkStackName}-SubnetId"
+          AssociatePublicIpAddress: true
+          DeleteOnTermination: true
+          GroupSet:
+            - !Ref factorioSG

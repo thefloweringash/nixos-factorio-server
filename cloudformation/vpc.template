@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Resources:
+  CommonVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.89.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+
+  CommonPrefix:
+    Type: AWS::EC2::VPCCidrBlock
+    Properties:
+      AmazonProvidedIpv6CidrBlock: true
+      VpcId: !Ref CommonVPC
+
+  CommonSubnet:
+    Type: AWS::EC2::Subnet
+    DependsOn: [ CommonPrefix ] # to make sure the vpc has ipv6 blocks
+    Properties:
+      AssignIpv6AddressOnCreation: true
+      CidrBlock: 10.89.0.0/24
+      Ipv6CidrBlock:
+        Fn::Select:
+          - 0
+          - Fn::Cidr:
+            - !Select [0, !GetAtt CommonVPC.Ipv6CidrBlocks]
+            - 1
+            - 64
+      VpcId: !Ref CommonVPC
+
+  Gateway:
+    Type: AWS::EC2::InternetGateway
+
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref CommonVPC
+      InternetGatewayId: !Ref Gateway
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref CommonVPC
+
+  SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTable
+      SubnetId: !Ref CommonSubnet
+
+  GatewayRoute4:
+    Type: AWS::EC2::Route
+    DependsOn: [ VPCGatewayAttachment ]
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref Gateway
+
+  GatewayRoute6:
+    Type: AWS::EC2::Route
+    DependsOn: [ VPCGatewayAttachment ]
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationIpv6CidrBlock: ::/0
+      GatewayId: !Ref Gateway
+
+Outputs:
+  VPCId:
+    Value: !Ref CommonVPC
+    Export:
+      Name: !Sub "${AWS::StackName}-VpcId"
+
+  SubnetId:
+    Value: !Ref CommonSubnet
+    Export:
+      Name: !Sub "${AWS::StackName}-SubnetId"
