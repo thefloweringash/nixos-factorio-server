@@ -4,6 +4,7 @@ let
   versionHashes = {
     "0.16.51" = "0zrnpg2js0ysvx9y50h3gajldk16mv02dvrwnkazh5kzr1d9zc3c";
     "0.17.31" = "16w536i9fx621xb4x07dvfmsp31wjdfm256kj8b3i84pfqlrvwhg";
+    "0.17.32" = "1jfjbb0v7yiqpn7nxkr4fcd1rsz59s8k6qcl82d1j320l3y7nl9w";
   };
 
   factorioVersionOverlay = version: self: super: {
@@ -29,7 +30,7 @@ let
 
     factorio-stephen = {
       ordinal = 1;
-      version = "0.17.31";
+      version = "0.17.32";
       factorioConfig = {
         game-password = "REDACTED";
         saveName = "Stephen";
