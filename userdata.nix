@@ -81,6 +81,10 @@ in
   config = mkMerge (factorioConfigs ++ [{
     services.openssh.passwordAuthentication = false;
 
+    environment.systemPackages = with pkgs; [ vim rsync ];
+
+    programs.zsh.enable = true;
+
     users.extraUsers.lorne = {
       isNormalUser = true;
       uid = 1000;
