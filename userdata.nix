@@ -6,6 +6,7 @@ let
     "0.17.31" = "16w536i9fx621xb4x07dvfmsp31wjdfm256kj8b3i84pfqlrvwhg";
     "0.17.32" = "1jfjbb0v7yiqpn7nxkr4fcd1rsz59s8k6qcl82d1j320l3y7nl9w";
     "0.17.33" = "0dixy643lxhj1p6pa54f23rg8rngvccvrpfcml3ipkbrg4qw6k8y";
+    "0.17.34" = "0lnlbvd6ziwna8cqwj7v1mcv4jrca45x0kws9aydsq77r8adz267";
   };
 
   factorioVersionOverlay = version: self: super: {
@@ -31,7 +32,7 @@ let
 
     factorio-stephen = {
       ordinal = 1;
-      version = "0.17.33";
+      version = "0.17.34";
       factorioConfig = {
         game-password = "REDACTED";
         saveName = "Stephen";
