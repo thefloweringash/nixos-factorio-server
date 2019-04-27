@@ -31,7 +31,7 @@ let
 
     factorio-stephen = {
       ordinal = 1;
-      version = "0.17.32";
+      version = "0.17.33";
       factorioConfig = {
         game-password = "REDACTED";
         saveName = "Stephen";
