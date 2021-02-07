@@ -8,38 +8,41 @@ Parameters:
 
 Mappings:
   NixOSAMI:
-    # nix-instantiate --json --strict --eval --expr '(import <nixpkgs/nixos/modules/virtualisation/ec2-amis.nix>).latest' |  ruby -r yaml -r json -e 'puts JSON.load(STDIN).to_yaml'
+    # nix-instantiate -I nixpkgs=channel:nixos-20.09 --json --strict --eval --expr '(import <nixpkgs/nixos/modules/virtualisation/ec2-amis.nix>).latest' |  ruby -r yaml -r json -e 'puts JSON.load(STDIN).to_yaml'
+    ap-east-1:
+      hvmebs: ami-071f49713f86ea965
     ap-northeast-1:
-      hvmebs: ami-0cdba8e998f076547
+      hvmebs: ami-0beb18d632cf64e5a
     ap-northeast-2:
-      hvmebs: ami-0400a698e6a9f4a15
+      hvmebs: ami-0dd0316af578862db
     ap-south-1:
-      hvmebs: ami-0880a678d3f555313
+      hvmebs: ami-008d15ced81c88aed
     ap-southeast-1:
-      hvmebs: ami-0892c7e24ebf2194f
+      hvmebs: ami-0db0304e23c535b2a
     ap-southeast-2:
-      hvmebs: ami-010730f36424b0a2c
+      hvmebs: ami-045983c4db7e36447
     ca-central-1:
-      hvmebs: ami-04f66113f76198f6c
+      hvmebs: ami-06d5ee429f153f856
     eu-central-1:
-      hvmebs: ami-07c9b884e679df4f8
+      hvmebs: ami-01d4a0c2248cbfe38
+    eu-north-1:
+      hvmebs: ami-0003f54dd99d68e0f
     eu-west-1:
-      hvmebs: ami-0f412186fb8a0ec97
+      hvmebs: ami-01a79d5ce435f4db3
     eu-west-2:
-      hvmebs: ami-0dada3805ce43c55e
+      hvmebs: ami-0cbe14f32904e6331
     eu-west-3:
-      hvmebs: ami-074df85565f2e02e2
+      hvmebs: ami-07f493412d6213de6
     sa-east-1:
-      hvmebs: ami-0e4a8a47fd6db6112
+      hvmebs: ami-05ded1ae35209b5a8
     us-east-1:
-      hvmebs: ami-009c9c3f1af480ff3
+      hvmebs: ami-068a62d478710462d
     us-east-2:
-      hvmebs: ami-08199961085ea8bc6
+      hvmebs: ami-01ac677ff61399caa
     us-west-1:
-      hvmebs: ami-07aa7f56d612ddd38
+      hvmebs: ami-04befdb203b4b17f6
     us-west-2:
-      hvmebs: ami-01c84b7c368ac24d1
-
+      hvmebs: ami0fb7bd4a43261c6b2-
 
 Resources:
   factorioSG:
