@@ -80,7 +80,7 @@ let
         services.factorio = ({
           enable = true;
           inherit port;
-          game-name = "${name}@horkher";
+          game-name = "${name}@aws";
           saveName = name;
           package = setFactorioVersion version pkgs.factorio-headless;
           extraSettings = {
