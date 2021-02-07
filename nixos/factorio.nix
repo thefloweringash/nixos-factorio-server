@@ -29,7 +29,11 @@ let
   });
 
   containers = {
-    "factorio-speedrun" = rec {
+    "factorio-speedrun" = let
+      mapConfig = lib.mapAttrs
+        (key: value: pkgs.writeText "${key}.json" (builtins.toJSON value))
+        (builtins.fromJSON (builtins.readFile ./map.json));
+    in rec {
       ordinal = 0;
       version = "1.1.19";
       factorioConfig = {
@@ -46,7 +50,8 @@ let
             ${cfg.package}/bin/factorio \
               --config=${cfg.configFile} \
               --create=${savePath} \
-              --map-gen-settings=${./factorio-speedrun-map-gen.json}
+              --map-settings=${mapConfig.map_settings} \
+              --map-gen-settings=${mapConfig.map_gen_settings}
           fi
         '';
       };
