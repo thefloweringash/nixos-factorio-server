@@ -1,0 +1,10 @@
+{
+  imports = [
+    <nixpkgs/nixos/modules/virtualisation/amazon-image.nix>
+    (builtins.fetchTarball {
+      url = "https://github.com/thefloweringash/nixos-factorio-server/archive/master.tar.gz";
+    } + "/nixos/configuration.nix")
+  ];
+
+  # factorio-server.password = "...";
+}
