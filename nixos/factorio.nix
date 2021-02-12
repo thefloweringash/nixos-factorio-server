@@ -38,22 +38,7 @@ let
       version = "1.1.19";
       factorioConfig = {
         game-password = cfg.password;
-        saveName = "Speedrun";
-      };
-      nixosConfig = { config, lib, ... }: let
-        cfg = config.services.factorio;
-        stateDir = "/var/lib/factorio";
-        savePath = "${stateDir}/saves/${factorioConfig.saveName}.zip";
-      in {
-        systemd.services.factorio.preStart = lib.mkForce ''
-          if [ ! -e ${savePath} ]; then
-            ${cfg.package}/bin/factorio \
-              --config=${cfg.configFile} \
-              --create=${savePath} \
-              --map-settings=${mapConfig.map_settings} \
-              --map-gen-settings=${mapConfig.map_gen_settings}
-          fi
-        '';
+        saveName = "Imilongi";
       };
     };
   };
@@ -84,7 +69,7 @@ let
           saveName = name;
           package = setFactorioVersion version pkgs.factorio-headless;
           extraSettings = {
-            admins = [ "thefloweringash" ];
+            admins = [ "sfnelson" ];
           };
         } // factorioConfig);
       };

@@ -95,3 +95,4 @@ Resources:
           DeleteOnTermination: true
           GroupSet:
             - !Ref factorioSG
+      KeyName: "stephen@umber"
