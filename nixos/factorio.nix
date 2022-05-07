@@ -75,6 +75,8 @@ let
           nixosConfig
         ];
 
+        nixpkgs.config.allowUnfree = true;
+
         # Can't use nixpkgs.overlays here, it's broken:
         # https://github.com/NixOS/nixpkgs/issues/88621
 
