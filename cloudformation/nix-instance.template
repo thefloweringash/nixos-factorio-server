@@ -84,7 +84,7 @@ Resources:
       ImageId: !FindInMap ["NixOSAMI", !Ref "AWS::Region", "hvmebs"]
       UserData: !Ref UserData
       BlockDeviceMappings:
-        - DeviceName: /dev/sda1
+        - DeviceName: /dev/xvda
           Ebs:
             VolumeSize: 20
       NetworkInterfaces:
