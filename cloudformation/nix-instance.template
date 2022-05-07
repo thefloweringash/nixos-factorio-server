@@ -10,39 +10,39 @@ Mappings:
   NixOSAMI:
     # nix-instantiate -I nixpkgs=channel:nixos-21.11 --json --strict --eval --expr '(import <nixpkgs/nixos/modules/virtualisation/ec2-amis.nix>).latest' |  ruby -r yaml -r json -e 'puts JSON.load(STDIN).to_yaml'
     ap-east-1:
-      hvm-ebs: ami-0835a3e481dc240f9
+      hvmebs: ami-0835a3e481dc240f9
     ap-northeast-1:
-      hvm-ebs: ami-07c95eda953bf5435
+      hvmebs: ami-07c95eda953bf5435
     ap-northeast-2:
-      hvm-ebs: ami-04167df3cd952b3bd
+      hvmebs: ami-04167df3cd952b3bd
     ap-south-1:
-      hvm-ebs: ami-0680e05531b3db677
+      hvmebs: ami-0680e05531b3db677
     ap-southeast-1:
-      hvm-ebs: ami-0dc8d718279d3402d
+      hvmebs: ami-0dc8d718279d3402d
     ap-southeast-2:
-      hvm-ebs: ami-0155e842329970187
+      hvmebs: ami-0155e842329970187
     ca-central-1:
-      hvm-ebs: ami-0e67089f898e74443
+      hvmebs: ami-0e67089f898e74443
     eu-central-1:
-      hvm-ebs: ami-0fcf28c07e86142c5
+      hvmebs: ami-0fcf28c07e86142c5
     eu-north-1:
-      hvm-ebs: ami-0ee83a3c6590fd6b1
+      hvmebs: ami-0ee83a3c6590fd6b1
     eu-west-1:
-      hvm-ebs: ami-01d0304a712f2f3f0
+      hvmebs: ami-01d0304a712f2f3f0
     eu-west-2:
-      hvm-ebs: ami-00e828bfc1e5d09ac
+      hvmebs: ami-00e828bfc1e5d09ac
     eu-west-3:
-      hvm-ebs: ami-0e1ea64430d8103f2
+      hvmebs: ami-0e1ea64430d8103f2
     sa-east-1:
-      hvm-ebs: ami-0f7c354c421348e51
+      hvmebs: ami-0f7c354c421348e51
     us-east-1:
-      hvm-ebs: ami-099756bfda4540da0
+      hvmebs: ami-099756bfda4540da0
     us-east-2:
-      hvm-ebs: ami-0b20a80b82052d23f
+      hvmebs: ami-0b20a80b82052d23f
     us-west-1:
-      hvm-ebs: ami-088ea590004b01752
+      hvmebs: ami-088ea590004b01752
     us-west-2:
-      hvm-ebs: ami-0025b9d4831b911a7
+      hvmebs: ami-0025b9d4831b911a7
 
 Resources:
   factorioSG:
