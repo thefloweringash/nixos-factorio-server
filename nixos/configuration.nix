@@ -23,7 +23,8 @@
       extraGroups = [ "wheel" ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAxhIH5vdDwR6fsRYUFb0asa4UlVR0fQnPQ7aRjQabUtH5uWei/O7xU5d4isyKaEFc+LE0g3eAZ+IFWwh6BEZ4KIYZckpMccGWE3dWFQTN9yz9x5fRzhsnhuXBZPx1WK1JbLQLoXP6U9uJNbyVuxL5TIZQBTG0EZefTBS1RDkjPRvwpIe6IqNkEc8l86ohNPfMUClGuLtxc03gHhHQ5aJEqxDrK9mWCyeMvwH0GZ/YlupR1YdBumi5dKSjz8MaQbNLH7AdpBWsZm1k13prZ39OKspsPqM06hzLqQyzFPcxEaDqMX18607Jb9AP2g8CNPePY8d9z3H7O9VD4vNuupC4wQ== lorne@illumination"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJG2Q4/TvD9uwkY4YLfl+KO7uLnYdyw6J4cDlITzx+hA lorne@illumination"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOIcPDy7c02Sd9AqLmVPjpFxr0j2U3dibAWTxF3CEa41 lorne@tourou.cons.org.nz"
       ];
     };
   };
