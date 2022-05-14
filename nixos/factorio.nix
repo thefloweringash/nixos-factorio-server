@@ -18,6 +18,7 @@ let
     "1.0.0"   = "0r0lplns8nxna2viv8qyx9mp4cckdvx6k20w2g2fwnj3jjmf3nc1";
     "1.1.19"  = "0w0ir1dzx39vq1w09ikgw956q1ilq6n0cyi50arjhgcqcg44w1ks";
     "1.1.57"  = "sha256-tWHdy+T2mj5WURHfFmALB+vUskat7Wmeaeq67+7lxfg=";
+    "1.1.59"  = "1p5wyki6wxnvnp7zqjjw9yggiy0p78rx49wmq3q7kq0mxfz054dg";
   };
 
   setFactorioVersion = version: drv: drv.overrideAttrs (attrs: {
@@ -36,7 +37,7 @@ let
         (builtins.fromJSON (builtins.readFile ./map.json));
     in rec {
       ordinal = 0;
-      version = "1.1.57";
+      version = "1.1.59";
       factorioConfig = {
         game-password = cfg.password;
         saveName = "Speedrun";
