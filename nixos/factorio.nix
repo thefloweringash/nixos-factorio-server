@@ -78,18 +78,14 @@ let
 
         nixpkgs.config.allowUnfree = true;
 
-        # Can't use nixpkgs.overlays here, it's broken:
-        # https://github.com/NixOS/nixpkgs/issues/88621
-
         services.factorio = ({
           enable = true;
           inherit port;
           game-name = "${name}@aws";
           saveName = name;
           package = setFactorioVersion version pkgs.factorio-headless;
-          extraSettings = {
-            admins = [ "thefloweringash" ];
-          };
+          nonBlockingSaving = true;
+          admins = [ "thefloweringash" ];
         } // factorioConfig);
       };
     };
